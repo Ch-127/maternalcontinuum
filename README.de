@@ -1,0 +1,31 @@
+# maternalcontinuum
+An R package for calculating the **Maternal Healthcare Continuum (CoC)** from cross-sectional survey data. 
+This package recodes standard maternal health variables (Antenatal Care, Skilled Birth Attendance, and Postnatal Care) into binary indicators and calculates a woman's overall completion of the continuum of care.
+## Installation
+You can install the development version from GitHub:
+```r
+# install.packages("devtools")
+devtools::install_github("Ch-127/maternalcontinuum")
+
+  Usage
+  library(maternalcontinuum)
+library(haven)
+
+# Load your survey data (e.g., SPSS)
+df <- read_sav("your_survey_data.sav")
+
+# Calculate the continuum of care
+df_clean <- calculate_continuum(
+  data = df, 
+  anc_var = "Antenatalcarevisit", 
+  sba_var = "deliverywithskilledbirthattendant", 
+  pnc_var = "postnatalcare"
+)
+
+# View completion rates
+table(df_clean$CoC_completion)
+
+  Author
+Chalachew Gashu Aimut
+Lecturer in Statistics, Oda Bultum University, Ethiopia
+  Orcid: https://orcid.org/0009-0003-0569-0274
